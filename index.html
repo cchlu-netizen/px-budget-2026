@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026年7-8月 平鎮店業績預估 ‧ 中元節 D-Day 分析</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 <style>
   *{box-sizing:border-box}
   body{font-family:"Microsoft JhengHei","PingFang TC",system-ui,sans-serif;margin:0;background:#f4f6f9;color:#1f2933}
@@ -134,6 +137,11 @@
   <div class="panel">
     <style>.anal td.nm:empty:before{content:"＋ 填入人名";color:#c3ccd6;font-size:12px}</style>
     <h2>中元檔期 業績高峰 × 鋪桌行程 × 人力配置</h2>
+    <div id="mpAuth" style="margin:10px 0 4px;padding:9px 13px;background:#eef5fb;border:1px solid #d5e3ef;border-radius:8px;font-size:13px;line-height:1.6">
+      <span id="mpAuthMsg">🔒 姓名排班需登入公司帳號（@pxmart）才能查看／編輯。</span>
+      <button id="mpLogin" style="margin-left:6px;border:1px solid #34708a;background:#34708a;color:#fff;border-radius:14px;padding:3px 14px;font-size:12.5px;cursor:pointer">使用 Google 登入</button>
+      <button id="mpLogout" style="margin-left:6px;border:1px solid #999;background:#fff;color:#555;border-radius:14px;padding:3px 12px;font-size:12.5px;cursor:pointer;display:none">登出</button>
+    </div>
     <p class="desc">結合六波九折／中元節業績高峰、各宮廟鋪桌行程（鋪桌時間取自行程表 P 欄），並以 2025 同性質日的「時段分析張數」抓人潮尖峰，佈署手扶梯與鋪桌人力。<span style="color:#c0392b">✏️ 以下所有欄位皆可點擊線上修改，自動存於本機瀏覽器。</span>　<button id="mpReset" style="border:1px solid #c0392b;background:#fff;color:#c0392b;border-radius:14px;padding:2px 12px;font-size:12px;cursor:pointer">↺ 還原預設</button></p>
 
     <p class="desc" style="margin-top:14px"><b>① 業績高峰 × 鋪桌行程 × 2025 同性質對應日</b></p>
@@ -183,28 +191,81 @@
       <b>排班優先序：</b>① 8/27 午後(鋪桌12＋手扶梯3) ② 8/22–8/23 全月最高銷售＋鎮安宮封箱/鋪桌(10:00 錯開午後) ③ 手扶梯晚間僅 8/22、8/23 需要，8/27 晚間人潮弱不佈署。
     </div>
     <div class="note">※ 鋪桌組與手扶梯組已分開兩張表，各組看自己那張即可知道當日該做什麼、幾點、幾人。<br>
-      ※ <b>所有表格可線上編輯，修改（含人名）自動存在你目前的瀏覽器（localStorage），不會上傳、公開網頁看不到人名</b>；換裝置或清除瀏覽資料會還原。需跨裝置／多人共用再告知，可改接 Firestore（需登入）。</div>
+      ※ <b>所有表格可線上編輯；修改（含人名）即時同步到雲端 Firestore，需登入公司帳號（@pxmart）</b>——換電腦登入同一帳號即可看到，未登入的公開訪客看不到姓名，符合個資保護。</div>
   </div>
 
   <script>
   (function(){
     var cells=document.querySelectorAll('td.ed');
+    var nameCells=document.querySelectorAll('td.nm');
+    var cfg={projectId:"turnover-6307f",appId:"1:848982432475:web:9741865d0d14578c1c4afe",storageBucket:"turnover-6307f.firebasestorage.app",apiKey:"AIzaSyCiqbX0S95Kgz4KWuThd3w-76PqHzikIl4",authDomain:"turnover-6307f.firebaseapp.com",messagingSenderId:"848982432475"};
+    if(!firebase.apps.length) firebase.initializeApp(cfg);
+    var auth=firebase.auth(), db=firebase.firestore();
+    var ref=db.collection('manpower_2026').doc('pingzhen');
+    var signedIn=false, unsub=null, timers={};
+    var msg=document.getElementById('mpAuthMsg'),
+        bLogin=document.getElementById('mpLogin'),
+        bLogout=document.getElementById('mpLogout'),
+        bReset=document.getElementById('mpReset');
+
+    function setEditable(on){
+      cells.forEach(function(c){
+        if(on){c.setAttribute('contenteditable','true');c.style.cursor='text';}
+        else{c.removeAttribute('contenteditable');c.style.cursor='default';}
+      });
+    }
+    function clearNames(){ nameCells.forEach(function(c){c.innerHTML='';}); }
+
     cells.forEach(function(c){
-      var key='pxmp_'+c.getAttribute('data-k');
-      var v=localStorage.getItem(key);
-      if(v!==null) c.innerHTML=v;
-      c.setAttribute('contenteditable','true');
-      c.style.cursor='text';
       c.addEventListener('focus',function(){c.style.outline='2px solid #c0392b';});
       c.addEventListener('blur',function(){c.style.outline='none';});
-      c.addEventListener('input',function(){localStorage.setItem(key,c.innerHTML);});
+      c.addEventListener('input',function(){
+        if(!signedIn) return;
+        var k=c.getAttribute('data-k'), val=c.innerHTML;
+        clearTimeout(timers[k]);
+        timers[k]=setTimeout(function(){
+          var o={cells:{}}; o.cells[k]=val;
+          ref.set(o,{merge:true}).catch(function(e){console.warn('save',e);});
+        },600);
+      });
     });
-    var btn=document.getElementById('mpReset');
-    if(btn) btn.addEventListener('click',function(){
-      if(!confirm('確定還原所有線上修改（含已填人名）？')) return;
-      cells.forEach(function(c){localStorage.removeItem('pxmp_'+c.getAttribute('data-k'));});
-      location.reload();
+
+    function subscribe(){
+      unsub=ref.onSnapshot(function(snap){
+        var data=(snap.exists&&snap.data().cells)||{};
+        cells.forEach(function(c){
+          var k=c.getAttribute('data-k');
+          if(data[k]!==undefined && c.innerHTML!==data[k] && document.activeElement!==c) c.innerHTML=data[k];
+        });
+      },function(e){console.warn('snap',e);});
+    }
+
+    auth.onAuthStateChanged(function(user){
+      if(user){
+        signedIn=true;
+        msg.textContent='✅ 已登入：'+user.email+'　（修改即時同步雲端，換電腦登入同帳號即可看到）';
+        bLogin.style.display='none'; bLogout.style.display=''; if(bReset) bReset.style.display='';
+        setEditable(true); subscribe();
+      }else{
+        signedIn=false;
+        if(unsub){unsub();unsub=null;}
+        msg.textContent='🔒 姓名排班需登入公司帳號（@pxmart）才能查看／編輯。';
+        bLogin.style.display=''; bLogout.style.display='none'; if(bReset) bReset.style.display='none';
+        setEditable(false); clearNames();
+      }
     });
+    bLogin.onclick=function(){
+      auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .catch(function(e){ alert('登入失敗：'+e.message+'
+（若顯示 unauthorized-domain，需先在 Firebase 授權網域加入本站網域）'); });
+    };
+    bLogout.onclick=function(){ auth.signOut(); };
+    if(bReset) bReset.onclick=function(){
+      if(!signedIn) return;
+      if(!confirm('確定清空雲端所有排班內容（含人名）並還原預設？')) return;
+      ref.set({cells:{}}).then(function(){ location.reload(); });
+    };
+    setEditable(false);
   })();
   </script>
 
