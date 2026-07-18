@@ -132,8 +132,9 @@
   </div>
 
   <div class="panel">
+    <style>.anal td.nm:empty:before{content:"＋ 填入人名";color:#c3ccd6;font-size:12px}</style>
     <h2>中元檔期 業績高峰 × 鋪桌行程 × 人力配置</h2>
-    <p class="desc">結合六波九折／中元節業績高峰、各宮廟鋪桌行程（鋪桌時間取自行程表 P 欄），並以 2025 同性質日的「時段分析張數」抓人潮尖峰，佈署手扶梯與鋪桌人力。<span style="color:#c0392b">✏️ 下方兩張表所有欄位皆可點擊線上修改，自動存於本機瀏覽器。</span>　<button id="mpReset" style="border:1px solid #c0392b;background:#fff;color:#c0392b;border-radius:14px;padding:2px 12px;font-size:12px;cursor:pointer">↺ 還原預設</button></p>
+    <p class="desc">結合六波九折／中元節業績高峰、各宮廟鋪桌行程（鋪桌時間取自行程表 P 欄），並以 2025 同性質日的「時段分析張數」抓人潮尖峰，佈署手扶梯與鋪桌人力。<span style="color:#c0392b">✏️ 以下所有欄位皆可點擊線上修改，自動存於本機瀏覽器。</span>　<button id="mpReset" style="border:1px solid #c0392b;background:#fff;color:#c0392b;border-radius:14px;padding:2px 12px;font-size:12px;cursor:pointer">↺ 還原預設</button></p>
 
     <p class="desc" style="margin-top:14px"><b>① 業績高峰 × 鋪桌行程 × 2025 同性質對應日</b></p>
     <table class="anal" id="mpTable1">
@@ -151,31 +152,38 @@
     </table>
     <div class="note">※ 對應規則：同星期別、D-Day 最接近（假日↔假日、平日↔平日）；8/27 中元節時段分析對 2025/9/6 中元節。</div>
 
-    <p class="desc" style="margin-top:20px"><b>② 三天時段人力配置</b>　<span style="font-size:12px;color:#5b6b7b">（人名欄留空，填寫後只存在你的瀏覽器，不會進公開網頁）</span></p>
-    <table class="anal" id="mpTable2">
-      <thead><tr><th>日期(週)</th><th>對應 2025</th><th>項目</th><th>人數</th><th>時段</th><th>時段總張數／備註</th><th>人名</th></tr></thead>
+    <p class="desc" style="margin-top:20px"><b>②-A 鋪桌人力</b>　<span style="font-size:12px;color:#5b6b7b">（人數＝組數÷100；時間取自行程表 P 欄。人名填寫後只存本機瀏覽器）</span></p>
+    <table class="anal" id="mpTableP">
+      <thead><tr><th>日期(週)</th><th>宮廟／作業</th><th>鋪桌時間</th><th>人數</th><th>人名（鋪桌組）</th></tr></thead>
       <tbody>
-        <tr><td class="k" rowspan="4">8/22(六)</td><td rowspan="4">8/30(六)</td><td>鋪桌｜鎮安宮 封箱</td><td class="ed" data-k="50">7</td><td class="ed" data-k="51">上午尖峰前完成</td><td class="ed" data-k="52">700組</td><td class="ed" data-k="49" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="54">3</td><td class="ed" data-k="55">11:00–13:00</td><td class="ed" data-k="56">1,147張 午尖峰</td><td class="ed" data-k="53" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="58">3</td><td class="ed" data-k="59">14:00–18:00</td><td class="ed" data-k="60">2,552張 午後主尖峰</td><td class="ed" data-k="57" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="62">3</td><td class="ed" data-k="63">19:30–21:30</td><td class="ed" data-k="64">1,043張 晚間次尖峰</td><td class="ed" data-k="61" style="min-width:78px"></td></tr>
-        <tr><td class="k" rowspan="4">8/23(日)</td><td rowspan="4">8/31(日)</td><td>鋪桌｜鎮安宮 鋪桌</td><td class="ed" data-k="66">7</td><td class="ed" data-k="67">＠10:00</td><td class="ed" data-k="68">700組</td><td class="ed" data-k="65" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="70">3</td><td class="ed" data-k="71">11:00–13:30</td><td class="ed" data-k="72">1,489張 午尖峰</td><td class="ed" data-k="69" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="74">3</td><td class="ed" data-k="75">14:30–18:00</td><td class="ed" data-k="76">2,673張 午後主尖峰</td><td class="ed" data-k="73" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="78">3</td><td class="ed" data-k="79">18:00–20:00</td><td class="ed" data-k="80">1,095張 晚間</td><td class="ed" data-k="77" style="min-width:78px"></td></tr>
-        <tr style="background:#fde8e8"><td class="k" rowspan="4">8/27(四)中元節</td><td rowspan="4">9/6(六)</td><td>鋪桌｜錫福宮</td><td class="ed" data-k="82">7</td><td class="ed" data-k="83">＠13:30</td><td class="ed" data-k="84">700組</td><td class="ed" data-k="81" style="min-width:78px"></td></tr>
-        <tr><td>鋪桌｜仁和宮</td><td class="ed" data-k="86">5</td><td class="ed" data-k="87">＠14:00</td><td class="ed" data-k="88">550組</td><td class="ed" data-k="85" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="90">3</td><td class="ed" data-k="91">11:00–13:00</td><td class="ed" data-k="92">997張 午尖峰</td><td class="ed" data-k="89" style="min-width:78px"></td></tr>
-        <tr><td>手扶梯(4F)</td><td class="ed" data-k="94">3</td><td class="ed" data-k="95">14:00–17:00</td><td class="ed" data-k="96">1,512張 午後主尖峰</td><td class="ed" data-k="93" style="min-width:78px"></td></tr>
+        <tr><td class="ed" data-k="49">8/22(六)</td><td class="ed" data-k="50">鎮安宮 封箱</td><td class="ed" data-k="51">上午尖峰前完成</td><td class="ed" data-k="52">7</td><td class="ed nm" data-k="53" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="54">8/23(日)</td><td class="ed" data-k="55">鎮安宮 鋪桌</td><td class="ed" data-k="56">＠10:00</td><td class="ed" data-k="57">7</td><td class="ed nm" data-k="58" style="min-width:150px"></td></tr>
+        <tr style="background:#fde8e8"><td class="ed" data-k="59">8/27(四)中元節</td><td class="ed" data-k="60">錫福宮 出貨</td><td class="ed" data-k="61">＠13:30</td><td class="ed" data-k="62">7</td><td class="ed nm" data-k="63" style="min-width:150px"></td></tr>
+        <tr style="background:#fde8e8"><td class="ed" data-k="64">8/27(四)中元節</td><td class="ed" data-k="65">仁和宮 出貨</td><td class="ed" data-k="66">＠14:00</td><td class="ed" data-k="67">5</td><td class="ed nm" data-k="68" style="min-width:150px"></td></tr>
       </tbody>
     </table>
+
+    <p class="desc" style="margin-top:18px"><b>②-B 手扶梯人力（四樓）</b>　<span style="font-size:12px;color:#5b6b7b">（每段固定 3 人，壓在人潮尖峰；括號為該時段時段分析總張數）</span></p>
+    <table class="anal" id="mpTableE">
+      <thead><tr><th>日期(週)</th><th>時段</th><th>時段總張數／備註</th><th>人數</th><th>人名（手扶梯組）</th></tr></thead>
+      <tbody>
+        <tr><td class="ed" data-k="69">8/22(六)</td><td class="ed" data-k="70">11:00–13:00</td><td class="ed" data-k="71">1,147張 午尖峰</td><td class="ed" data-k="72">3</td><td class="ed nm" data-k="73" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="74">8/22(六)</td><td class="ed" data-k="75">14:00–18:00</td><td class="ed" data-k="76">2,552張 午後主尖峰</td><td class="ed" data-k="77">3</td><td class="ed nm" data-k="78" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="79">8/22(六)</td><td class="ed" data-k="80">19:30–21:30</td><td class="ed" data-k="81">1,043張 晚間次尖峰</td><td class="ed" data-k="82">3</td><td class="ed nm" data-k="83" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="84">8/23(日)</td><td class="ed" data-k="85">11:00–13:30</td><td class="ed" data-k="86">1,489張 午尖峰</td><td class="ed" data-k="87">3</td><td class="ed nm" data-k="88" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="89">8/23(日)</td><td class="ed" data-k="90">14:30–18:00</td><td class="ed" data-k="91">2,673張 午後主尖峰</td><td class="ed" data-k="92">3</td><td class="ed nm" data-k="93" style="min-width:150px"></td></tr>
+        <tr><td class="ed" data-k="94">8/23(日)</td><td class="ed" data-k="95">18:00–20:00</td><td class="ed" data-k="96">1,095張 晚間</td><td class="ed" data-k="97">3</td><td class="ed nm" data-k="98" style="min-width:150px"></td></tr>
+        <tr style="background:#fde8e8"><td class="ed" data-k="99">8/27(四)</td><td class="ed" data-k="100">11:00–13:00</td><td class="ed" data-k="101">997張 午尖峰</td><td class="ed" data-k="102">3</td><td class="ed nm" data-k="103" style="min-width:150px"></td></tr>
+        <tr style="background:#fde8e8"><td class="ed" data-k="104">8/27(四)</td><td class="ed" data-k="105">14:00–17:00</td><td class="ed" data-k="106">1,512張 午後主尖峰</td><td class="ed" data-k="107">3</td><td class="ed nm" data-k="108" style="min-width:150px"></td></tr>
+      </tbody>
+    </table>
+
     <div class="keyfind">
       <b>🔴 8/27 中元節是最大衝突點：</b>錫福宮(7人＠13:30)＋仁和宮(5人＠14:00)＝<b>12 人鋪桌卡在午後尖峰起點</b>，又疊手扶梯 3 人 → <b>13:30–14:30 同時需 15 人</b>，三天中人力最緊。<br>
-      <b>排班優先序：</b>① 8/27 午後(鋪桌12＋手扶梯3) ② 8/22–8/23 全月最高銷售＋鎮安宮封箱/鋪桌(10:00 錯開午後) ③ 手扶梯三段（午／午後主／晚間）各 3 人，晚間僅 8/22、8/23 需要，8/27 晚間人潮弱不佈署。
+      <b>排班優先序：</b>① 8/27 午後(鋪桌12＋手扶梯3) ② 8/22–8/23 全月最高銷售＋鎮安宮封箱/鋪桌(10:00 錯開午後) ③ 手扶梯晚間僅 8/22、8/23 需要，8/27 晚間人潮弱不佈署。
     </div>
-    <div class="note">※ 手扶梯每段固定 3 人，只壓在尖峰時段（全日均張數約 180–242，尖峰帶為均值 1.5–1.7 倍）。<br>
-      ※ 鋪桌人數＝組數÷100（鎮安宮/錫福宮各 700組→7人、仁和宮 550組→5人）；鋪桌時間取自行程表 P 欄。<br>
-      ※ <b>兩張表皆可線上編輯，修改自動存在你目前的瀏覽器（localStorage）</b>；換裝置或清除瀏覽資料會還原。人名等個資只留在你的瀏覽器、不會上傳。需跨裝置共用再告知，可改接 Firestore（需登入）。</div>
+    <div class="note">※ 鋪桌組與手扶梯組已分開兩張表，各組看自己那張即可知道當日該做什麼、幾點、幾人。<br>
+      ※ <b>所有表格可線上編輯，修改（含人名）自動存在你目前的瀏覽器（localStorage），不會上傳、公開網頁看不到人名</b>；換裝置或清除瀏覽資料會還原。需跨裝置／多人共用再告知，可改接 Firestore（需登入）。</div>
   </div>
 
   <script>
@@ -193,7 +201,7 @@
     });
     var btn=document.getElementById('mpReset');
     if(btn) btn.addEventListener('click',function(){
-      if(!confirm('確定還原兩張表的所有線上修改（含已填人名）？')) return;
+      if(!confirm('確定還原所有線上修改（含已填人名）？')) return;
       cells.forEach(function(c){localStorage.removeItem('pxmp_'+c.getAttribute('data-k'));});
       location.reload();
     });
