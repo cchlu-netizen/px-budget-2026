@@ -256,8 +256,7 @@
     });
     bLogin.onclick=function(){
       auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .catch(function(e){ alert('登入失敗：'+e.message+'
-（若顯示 unauthorized-domain，需先在 Firebase 授權網域加入本站網域）'); });
+        .catch(function(e){ alert('登入失敗：'+e.message+'（若出現 unauthorized-domain，代表本站網域尚未加入 Firebase 授權清單）'); });
     };
     bLogout.onclick=function(){ auth.signOut(); };
     if(bReset) bReset.onclick=function(){
