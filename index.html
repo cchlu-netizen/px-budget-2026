@@ -133,7 +133,7 @@
 
   <div class="panel">
     <h2>中元檔期 業績高峰 × 鋪桌行程 × 人力配置</h2>
-    <p class="desc">結合六波九折／中元節業績高峰、各宮廟鋪桌行程（裝箱封箱＝安管、出貨＝鋪桌），並以「假日對假日、D-Day 最近」對照 2025 同性質日，供排班參考。</p>
+    <p class="desc">結合六波九折／中元節業績高峰、各宮廟鋪桌行程（鋪桌時間取自行程表 P 欄），並以 2025 同性質日的「時段分析張數」抓人潮尖峰，佈署手扶梯與鋪桌人力。</p>
 
     <p class="desc" style="margin-top:14px"><b>① 業績高峰 × 鋪桌行程 × 2025 同性質對應日</b></p>
     <table class="anal">
@@ -142,40 +142,63 @@
         <tr><td class="k">8/1(六)</td><td>12,610</td><td>第二波9折｜慈雲普寺宮 出貨</td><td>8/9(六)</td><td>6,606</td><td>快閃(灣仔碼頭)</td></tr>
         <tr><td class="k">8/2(日)</td><td><b>15,806</b></td><td>第二波9折｜（無鋪桌，純賣場高峰）</td><td>8/10(日)</td><td>8,200</td><td>快閃(灣仔碼頭)＋二手市集</td></tr>
         <tr style="background:#fde8e8"><td class="k">8/22(六)</td><td><b>19,661</b></td><td>第五波9折(全月最高)｜鎮安宮 封箱</td><td>8/30(六)</td><td>17,800</td><td>第五波9折</td></tr>
-        <tr style="background:#fde8e8"><td class="k">8/23(日)</td><td><b>17,980</b></td><td>第五波9折｜鎮安宮 出貨</td><td>8/31(日)</td><td>16,404</td><td>第五波9折</td></tr>
+        <tr style="background:#fde8e8"><td class="k">8/23(日)</td><td><b>17,980</b></td><td>第五波9折｜鎮安宮 出貨/鋪桌</td><td>8/31(日)</td><td>16,404</td><td>第五波9折</td></tr>
         <tr><td class="k">8/24(一)</td><td>8,500</td><td>第六波9折｜永昌宮 封箱</td><td>9/1(一)</td><td>5,977</td><td>平日(無活動)</td></tr>
-        <tr><td class="k">8/25(二)</td><td>9,000</td><td>第六波9折｜永昌宮 出貨</td><td>9/2(二)</td><td>6,520</td><td>平日(無活動)</td></tr>
+        <tr><td class="k">8/25(二)</td><td>9,000</td><td>第六波9折｜永昌宮 出貨/鋪桌</td><td>9/2(二)</td><td>6,520</td><td>平日(無活動)</td></tr>
         <tr><td class="k">8/26(三)</td><td>9,701</td><td>第六波9折｜錫福宮＋仁和宮 封箱</td><td>9/3(三)</td><td>6,571</td><td>平日(無活動)</td></tr>
-        <tr class="zy"><td class="k">8/27(四)</td><td>8,500</td><td>中元節｜錫福宮＋仁和宮 出貨</td><td>9/4(四)</td><td>10,696</td><td>第六波9折(平日)</td></tr>
+        <tr class="zy"><td class="k">8/27(四)</td><td>8,500</td><td>中元節｜錫福宮＋仁和宮 出貨/鋪桌</td><td>9/4(四)</td><td>10,696</td><td>第六波9折(平日)</td></tr>
       </tbody>
     </table>
-    <div class="note">※ 對應規則：同星期別、D-Day 最接近（假日↔假日、平日↔平日）。因 2025 中元＝9/6(六)、2026＝8/27(四)，同星期別的對應日一致落在 D-Day 早約 2 天。<br>
-      ※ 週末九折可比：8/22(六) 19,661↔2025/8/30 17,800（約 +10%）、8/23(日) 17,980↔2025/8/31 16,404（約 +10%）。<br>
-      ※ 中元波 8/24–26 壓平日，2025 同星期別是無活動平日（約 6,000）、無前例；中元節 8/27 不打折，量能低於 2025 同星期的九折日。</div>
+    <div class="note">※ 對應規則：同星期別、D-Day 最接近（假日↔假日、平日↔平日）；8/27 中元節另可對 2025/9/6 中元節（時段分析用此版）。</div>
 
-    <p class="desc" style="margin-top:20px"><b>② 逐日人力配置建議</b>（賣場班以相對加派表示，+N＝一般平日基準班之上多派 N 人）</p>
-    <table class="anal">
-      <thead><tr><th>日期(週)</th><th>業績(仟)</th><th>賣場班</th><th>封箱(安管)</th><th>出貨／鋪桌</th><th>當日重點</th></tr></thead>
+    <p class="desc" style="margin-top:20px"><b>② 三天時段人力配置</b>　<span style="font-size:12px;color:#c0392b">✏️ 表格數字／時段／備註可直接點擊線上修改（自動存於本機瀏覽器）</span>　<button id="mpReset" style="border:1px solid #c0392b;background:#fff;color:#c0392b;border-radius:14px;padding:2px 12px;font-size:12px;cursor:pointer">↺ 還原預設</button></p>
+    <table class="anal" id="mpTable">
+      <thead><tr><th>日期(週)</th><th>對應 2025</th><th>項目</th><th>人數</th><th>時段</th><th>時段總張數／備註</th></tr></thead>
       <tbody>
-        <tr><td class="k">8/1(六)</td><td>12,610</td><td>+4</td><td>—</td><td>慈雲普寺宮 3人</td><td>賣場旺日＋出貨錯開</td></tr>
-        <tr><td class="k">8/2(日)</td><td>15,806</td><td>+5</td><td>—</td><td>—</td><td>純賣場最吃人，無鋪桌可分流</td></tr>
-        <tr style="background:#fde8e8"><td class="k">8/22(六)</td><td>19,661</td><td>+6~7</td><td>鎮安宮 2~3人</td><td>—</td><td>全月最高＋封箱同日</td></tr>
-        <tr style="background:#fde8e8"><td class="k">8/23(日)</td><td>17,980</td><td>+6</td><td>—</td><td>鎮安宮 2~3人</td><td>超高峰＋出貨</td></tr>
-        <tr><td class="k">8/24(一)</td><td>8,500</td><td>+2~3</td><td>永昌宮 4~5人</td><td>—</td><td>平日旺日＋大量封箱(500箱)</td></tr>
-        <tr><td class="k">8/25(二)</td><td>9,000</td><td>+2~3</td><td>—</td><td>永昌宮 4~5人</td><td>平日旺日＋大量出貨</td></tr>
-        <tr><td class="k">8/26(三)</td><td>9,701</td><td>+2~3</td><td>錫福宮＋仁和宮 5~6人</td><td>—</td><td>兩家封箱(含仁和宮550箱)</td></tr>
-        <tr class="zy"><td class="k">8/27(四)</td><td>8,500</td><td>+2~3</td><td>—</td><td>錫福宮＋仁和宮 5~6人</td><td>中元節＋兩家出貨</td></tr>
+        <tr><td class="k" rowspan="4">8/22(六)</td><td rowspan="4">8/30(六)</td><td>鋪桌｜鎮安宮 封箱</td><td class="ed" data-k="1">7</td><td class="ed" data-k="2">上午尖峰前完成</td><td class="ed" data-k="3">700組</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="4">3</td><td class="ed" data-k="5">11:00–13:00</td><td class="ed" data-k="6">1,147張 午尖峰</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="7">3</td><td class="ed" data-k="8">14:00–18:00</td><td class="ed" data-k="9">2,552張 午後主尖峰</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="10">3</td><td class="ed" data-k="11">19:30–21:30</td><td class="ed" data-k="12">1,043張 晚間次尖峰</td></tr>
+        <tr><td class="k" rowspan="4">8/23(日)</td><td rowspan="4">8/31(日)</td><td>鋪桌｜鎮安宮 鋪桌</td><td class="ed" data-k="13">7</td><td class="ed" data-k="14">＠10:00</td><td class="ed" data-k="15">700組</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="16">3</td><td class="ed" data-k="17">11:00–13:30</td><td class="ed" data-k="18">1,489張 午尖峰</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="19">3</td><td class="ed" data-k="20">14:30–18:00</td><td class="ed" data-k="21">2,673張 午後主尖峰</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="22">3</td><td class="ed" data-k="23">18:00–20:00</td><td class="ed" data-k="24">1,095張 晚間</td></tr>
+        <tr style="background:#fde8e8"><td class="k" rowspan="4">8/27(四)中元節</td><td rowspan="4">9/6(六)</td><td>鋪桌｜錫福宮</td><td class="ed" data-k="25">7</td><td class="ed" data-k="26">＠13:30</td><td class="ed" data-k="27">700組</td></tr>
+        <tr><td>鋪桌｜仁和宮</td><td class="ed" data-k="28">5</td><td class="ed" data-k="29">＠14:00</td><td class="ed" data-k="30">550組</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="31">3</td><td class="ed" data-k="32">11:00–13:00</td><td class="ed" data-k="33">997張 午尖峰</td></tr>
+        <tr><td>手扶梯(4F)</td><td class="ed" data-k="34">3</td><td class="ed" data-k="35">14:00–17:00</td><td class="ed" data-k="36">1,512張 午後主尖峰</td></tr>
       </tbody>
     </table>
     <div class="keyfind">
-      <b>排班優先順序（風險高→低）：</b><br>
-      1. <b>8/22–8/23</b>：全月最高銷售 × 鎮安宮封箱／出貨，可照 2025 週末九折(8/30、8/31)配置再加碼。<br>
-      2. <b>8/26–8/27</b>：鋪桌工序最重（兩家宮廟接力封箱＋出貨）又逢中元波／中元節，安管封箱 5~6 人優先鎖定。<br>
-      3. <b>8/24–8/25</b>：永昌宮 500 箱單家最大量，安管排 4~5 人。<br>
-      4. <b>8/1–8/2</b>：第二波九折連兩天，賣場加派為主；8/1 再顧慈雲普寺宮出貨。
+      <b>🔴 8/27 中元節是最大衝突點：</b>錫福宮(7人＠13:30)＋仁和宮(5人＠14:00)＝<b>12 人鋪桌卡在午後尖峰起點</b>，又疊手扶梯 3 人 → <b>13:30–14:30 同時需 15 人</b>，三天中人力最緊。<br>
+      <b>排班優先序：</b>① 8/27 午後(鋪桌12＋手扶梯3) ② 8/22–8/23 全月最高銷售＋鎮安宮封箱/鋪桌(10:00 錯開午後) ③ 手扶梯三段（午／午後主／晚間）各 3 人，晚間僅 8/22、8/23 需要，8/27 晚間人潮弱不佈署。
     </div>
-    <div class="note">※ 假設：封箱／出貨依箱量估（1 人日約 120 箱）。已知 2026 箱數：義民廟 240、仁和宮 550、永昌宮 500；<b>鎮安宮／錫福宮／慈雲普寺宮箱數未確認</b>，先抓最小組（2 人），確認後再調。賣場「+N」待補平日基準班人數後可換算實際總人數。</div>
+    <div class="note">※ 手扶梯每段固定 3 人，只壓在尖峰時段（全日均張數約 180–242，尖峰帶為均值 1.5–1.7 倍）。<br>
+      ※ 鋪桌人數＝組數÷100（鎮安宮/錫福宮各 700組→7人、仁和宮 550組→5人）；鋪桌時間取自行程表 P 欄。<br>
+      ※ <b>本表可線上編輯，修改自動存在你目前的瀏覽器（localStorage）</b>；換裝置或清除瀏覽資料會還原預設。需跨裝置共用再告知，可改接 Firestore。</div>
   </div>
+
+  <script>
+  (function(){
+    var cells=document.querySelectorAll('#mpTable td.ed');
+    cells.forEach(function(c){
+      var key='pxmp_'+c.getAttribute('data-k');
+      var v=localStorage.getItem(key);
+      if(v!==null) c.textContent=v;
+      c.setAttribute('contenteditable','true');
+      c.style.cursor='text';
+      c.addEventListener('focus',function(){c.style.outline='2px solid #c0392b';});
+      c.addEventListener('blur',function(){c.style.outline='none';});
+      c.addEventListener('input',function(){localStorage.setItem(key,c.textContent);});
+    });
+    var btn=document.getElementById('mpReset');
+    if(btn) btn.addEventListener('click',function(){
+      if(!confirm('確定還原所有線上修改？')) return;
+      cells.forEach(function(c){localStorage.removeItem('pxmp_'+c.getAttribute('data-k'));});
+      location.reload();
+    });
+  })();
+  </script>
 
   <div class="panel">
     <h2>完整數值比對表（2025/7/1 → 2025/8/31）</h2>
